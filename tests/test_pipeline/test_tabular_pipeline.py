@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from unittest.mock import Mock, patch
 from pipeline.tabular_pipeline import TabularPipeline
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 
 class TestTabularPipeline(unittest.TestCase):
     def setUp(self):
@@ -216,7 +216,8 @@ class TestTabularPipeline(unittest.TestCase):
             self.pipeline.y_test,
             self.pipeline,
             "RANDOM_FOREST",
-            self.pipeline.config
+            self.pipeline.config,
+            None
         )
 
         # Additional assertions to verify the results

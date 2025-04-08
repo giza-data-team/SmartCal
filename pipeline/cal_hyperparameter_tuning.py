@@ -3,23 +3,28 @@ import numpy as np
 import pandas as pd
 import logging
 from itertools import product
-from config.configuration_manager.configuration_manager import ConfigurationManager
-from config.enums.calibration_algorithms_enum import CalibrationAlgorithmTypesEnum
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.enums.calibration_algorithms_enum import CalibrationAlgorithmTypesEnum
 from sklearn.metrics import accuracy_score, log_loss
 from pipeline.pipeline import Pipeline
-from config.enums.experiment_status_enum import Experiment_Status_Enum
-from utils.cal_metrics import compute_calibration_metrics
+from Package.src.SmartCal.config.enums.experiment_status_enum import Experiment_Status_Enum
+from Package.src.SmartCal.utils.cal_metrics import compute_calibration_metrics
 
 # Set up logging
 logger = logging.getLogger(__name__)
 config_manager = ConfigurationManager()
 
 class CalibrationTuner:
-    def __init__(self, pipeline_instance: Pipeline, model_name, config):
+    def __init__(self, pipeline_instance: Pipeline, model_name, config, use_kfold = False, n_splits=5):
         """Initialize with specified calibrators"""
         self.ece_calculator = pipeline_instance.ece_calculator
         self.mce_calculator = pipeline_instance.mce_calculator
         self.conf_ece_calculators = pipeline_instance.conf_ece_calculators
+        self.use_kfold = use_kfold
+        self.n_splits = n_splits
+        if self.use_kfold:
+            from sklearn.model_selection import StratifiedKFold
+            self.kf = StratifiedKFold(n_splits=self.n_splits, shuffle=True, random_state=config_manager.random_seed)
 
         # Get specified calibrators for this model
         self.calibrators_config = {}
@@ -30,6 +35,44 @@ class CalibrationTuner:
                     'hyperparams': hyperparams,
                     'run_id': run_id
                 }
+
+    def evaluate_calibrator_cv(self, calibrator_class, hyperparams, uncalibrated_probs, y):
+        """Evaluate calibrator using stratified k-fold cross-validation."""
+        ece_scores = []
+        total_fit_time = 0
+        total_predict_time = 0
+
+        X = np.array(uncalibrated_probs)
+        y = np.array(y)
+        n_classes = X.shape[1]
+        all_classes = np.arange(n_classes)
+
+        try:
+            for train_idx, val_idx in self.kf.split(X, y):
+                X_train, X_val = X[train_idx], X[val_idx]
+                y_train, y_val = y[train_idx], y[val_idx]
+
+                calibrator = calibrator_class(**hyperparams)
+                calibrator.fit(X_train, y_train)
+                cal_probs_val = calibrator.predict(X_val)
+
+                timing = calibrator.get_timing()
+                total_fit_time += timing['fit']
+                total_predict_time += timing['predict']
+
+                pred_labels = np.argmax(cal_probs_val, axis=1)
+                ece = self.ece_calculator.compute(cal_probs_val, pred_labels, y_val)
+                ece_scores.append(ece)
+
+            avg_ece = np.mean(ece_scores)
+            timing_info = {
+                'fit': total_fit_time / self.n_splits,
+                'predict': total_predict_time / self.n_splits
+            }
+            return avg_ece, timing_info
+        except Exception as e:
+            logger.error(f"CV evaluation error: {str(e)}")
+            return float('inf'), None
 
     def evaluate_calibrator(self,
                            calibrator_class,
@@ -107,26 +150,47 @@ class CalibrationTuner:
                 best_timing_info = None
                 best_cal_probs_valid = None
                 best_cal_probs_test = None
+                avg_cal_ece = None
 
                 # Handle calibrators with no hyperparameters
                 if not hyperparams:
-                    test_ece, timing_info, cal_probs_valid, cal_probs_test = self.evaluate_calibrator(
-                        calibrator_class, {}, 
-                        uncalibrated_probs_valid, y_valid,
-                        uncalibrated_probs_test, y_test
-                    )
-                    
-                    if test_ece < float('inf'):
-                        best_ece = test_ece
-                        best_hyperparams = {}
-                        best_timing_info = timing_info
-                        best_cal_probs_valid = cal_probs_valid
-                        best_cal_probs_test = cal_probs_test
-                        
-                        results.append({
-                            'test_ece': best_ece,
-                            'timing': timing_info
-                        })
+                    if self.use_kfold:
+                        avg_ece, timing = self.evaluate_calibrator_cv(
+                            calibrator_class, {}, uncalibrated_probs_valid, y_valid)
+
+                        if avg_ece < float('inf'):
+                            avg_cal_ece = avg_ece
+                            best_hyperparams = {}
+                            best_timing_info = timing
+
+                            # Still need to get calibrated probabilities for final evaluation
+                            calibrator = calibrator_class()
+                            calibrator.fit(uncalibrated_probs_valid, y_valid)
+                            best_cal_probs_valid = calibrator.predict(uncalibrated_probs_valid)
+                            best_cal_probs_test = calibrator.predict(uncalibrated_probs_test)
+
+                            results.append({
+                                'avg_ece': avg_cal_ece,
+                                'timing': timing
+                            })
+                    else:
+                        test_ece, timing_info, cal_probs_valid, cal_probs_test = self.evaluate_calibrator(
+                            calibrator_class, {},
+                            uncalibrated_probs_valid, y_valid,
+                            uncalibrated_probs_test, y_test
+                        )
+
+                        if test_ece < float('inf'):
+                            best_ece = test_ece
+                            best_hyperparams = {}
+                            best_timing_info = timing_info
+                            best_cal_probs_valid = cal_probs_valid
+                            best_cal_probs_test = cal_probs_test
+
+                            results.append({
+                                'test_ece': best_ece,
+                                'timing': timing_info
+                            })
 
                 # Handle calibrators with hyperparameters
                 else:
@@ -174,6 +238,10 @@ class CalibrationTuner:
                         predictions=pred_labels_valid,
                         true_labels=y_valid
                     ))
+                    if self.use_kfold:
+                        val_metrics.update({
+                            'ece': avg_cal_ece
+                        })
 
                     test_metrics = {
                         'loss': float(log_loss(y_test, best_cal_probs_test, labels=all_classes)),
@@ -233,7 +301,7 @@ class CalibrationTuner:
         return all_results
 
 def tune_all_calibration(uncalibrated_probs_valid, uncalibrated_probs_test, 
-                        y_valid, y_test, pipeline_instance, model_name, config):
+                        y_valid, y_test, pipeline_instance, model_name, config, use_kfold = False):
     """
     Wrapper function to create tuner instance and perform calibration.
     
@@ -249,10 +317,10 @@ def tune_all_calibration(uncalibrated_probs_valid, uncalibrated_probs_test,
     Returns:
         Dictionary containing tuning results for all calibrators
     """
-    tuner = CalibrationTuner(pipeline_instance, model_name, config)
+    tuner = CalibrationTuner(pipeline_instance, model_name, config, use_kfold)
     return tuner.tune_all_calibrators(
         uncalibrated_probs_valid,
         uncalibrated_probs_test,
         y_valid,
-        y_test
+        y_test,
     )

@@ -7,7 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 
 Base = declarative_base()
 config = ConfigurationManager()
@@ -52,6 +52,12 @@ else:
 DATABASE_URL = f"postgresql://{config.db_user}:{config.db_password}@{db_host}:{db_port}/{config.db_name}"
 
 _engine = create_engine(DATABASE_URL)
+try:
+    with _engine.connect() as conn:
+        print("✅ Successfully connected to the database.")
+except Exception as e:
+    print("❌ Failed to connect:", e)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=_engine)
 
 # 3) As a fallback, ensure tunnel closes on normal interpreter exit

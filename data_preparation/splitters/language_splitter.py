@@ -1,5 +1,5 @@
 from .data_splitter_base import DatasetSplitter
-from utils.timer import time_operation
+from Package.src.SmartCal.utils.timer import time_operation
 
 class LanguageSplitter(DatasetSplitter):
     def __init__(self, *args, **kwargs):

@@ -7,7 +7,7 @@ import pandas as pd
 from unittest.mock import patch
 
 from classifiers.tabular_classifier import TabularClassifier
-from config.enums.tabular_models_enum import TabularModelsEnum
+from Package.src.SmartCal.config.enums.tabular_models_enum import TabularModelsEnum
 
 
 class TestTabularClassifier(unittest.TestCase):

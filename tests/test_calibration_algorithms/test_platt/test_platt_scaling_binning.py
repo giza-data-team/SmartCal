@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from numpy.testing import assert_allclose
 
-from calibration_algorithms.platt.platt_scaling_binning import PlattBinnerScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.platt.platt_scaling_binning import PlattBinnerScalingCalibrator
 
 
 class TestPlattBinnerScalingCalibrator(unittest.TestCase):

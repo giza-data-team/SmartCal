@@ -3,7 +3,7 @@ import tempfile
 import shutil
 import torch
 
-from config.enums.language_models_enum import LanguageModelsEnum
+from Package.src.SmartCal.config.enums.language_models_enum import LanguageModelsEnum
 from classifiers.language_classifier import LanguageClassifier
 
 

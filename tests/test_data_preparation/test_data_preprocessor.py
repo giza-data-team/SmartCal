@@ -6,14 +6,14 @@ from unittest.mock import Mock, patch
 from torch.utils.data import Dataset, DataLoader
 import shutil
 from pathlib import Path
-from config.enums.language_models_enum import ModelType
+from Package.src.SmartCal.config.enums.language_models_enum import ModelType
 from data_preparation.splitters.tabular_splitter import TabularSplitter
 from data_preparation.preprocessors.images_preprocessor import ImagePreprocessor
 from data_preparation.preprocessors.language_preprocessor import LanguagePreprocessor
 from data_preparation.preprocessors.tabular_preprocessor import TabularPreprocessor
 
-from config.configuration_manager.configuration_manager import ConfigurationManager
-from config.enums.language_models_enum import LanguageModelsEnum
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.enums.language_models_enum import LanguageModelsEnum
 
 class MockDataset(Dataset):
     """Mock dataset for image testing"""

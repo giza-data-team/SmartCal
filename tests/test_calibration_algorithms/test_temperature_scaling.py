@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import torch
-from calibration_algorithms.temperature_scaling import TemperatureScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.temperature_scaling import TemperatureScalingCalibrator
 
 
 class TestTemperatureScaling(unittest.TestCase):

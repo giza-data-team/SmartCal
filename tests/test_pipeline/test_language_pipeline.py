@@ -6,8 +6,8 @@ import json
 import os
 from unittest.mock import Mock, patch, MagicMock
 from pipeline.language_pipeline import LanguagePipeline
-from config.enums.language_models_enum import ModelType
-from config.enums.language_models_enum import LanguageModelsEnum
+from Package.src.SmartCal.config.enums.language_models_enum import ModelType
+from Package.src.SmartCal.config.enums.language_models_enum import LanguageModelsEnum
 from sklearn.metrics import precision_score, recall_score, f1_score
 
 class TestLanguagePipeline(unittest.TestCase):

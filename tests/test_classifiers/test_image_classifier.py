@@ -9,7 +9,7 @@ from torchvision.datasets import FakeData
 from torchvision.transforms import Compose, Resize, ToTensor
 
 from classifiers.image_classifier import ImageClassifier
-from config.enums.image_models_enum import ImageModelsEnum
+from Package.src.SmartCal.config.enums.image_models_enum import ImageModelsEnum
 
 
 class EmptyDataset(Dataset):

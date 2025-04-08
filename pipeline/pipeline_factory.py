@@ -1,8 +1,8 @@
 from pipeline.tabular_pipeline import TabularPipeline
 from pipeline.image_pipeline import ImagePipeline
 from pipeline.language_pipeline import LanguagePipeline
-from config.enums.dataset_types_enum  import DatasetTypesEnum
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.enums.dataset_types_enum  import DatasetTypesEnum
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 
 config_manager = ConfigurationManager()
 

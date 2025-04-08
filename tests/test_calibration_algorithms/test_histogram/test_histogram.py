@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from calibration_algorithms.histogram.histogram import HistogramCalibrator
+from Package.src.SmartCal.calibration_algorithms.histogram.histogram import HistogramCalibrator
 
 
 class TestHistogramCalibrator(unittest.TestCase):

@@ -3,18 +3,17 @@ import itertools
 import numpy as np
 from numpy.testing import assert_allclose
 
-from calibration_algorithms.mix_and_match import MixAndMatchCalibrator
-from calibration_algorithms.temperature_scaling import TemperatureScalingCalibrator
-from calibration_algorithms.isotonic import IsotonicCalibrator
-from calibration_algorithms.beta import BetaCalibrator
-from calibration_algorithms.dirichlet import DirichletCalibrator
-from calibration_algorithms.empirical_binning import EmpiricalBinningCalibrator
-from calibration_algorithms.matrix_scaling import MatrixScalingCalibrator
-from calibration_algorithms.adaptive_temperature_scaling import AdaptiveTemperatureScalingCalibrator
-from calibration_algorithms.imax import ImaxCalibrator
-from calibration_algorithms.platt.platt_scaling import PlattScalingCalibrator
-from calibration_algorithms.vector_scaling import VectorScalingCalibrator
-from calibration_algorithms.histogram.histogram import HistogramCalibrator
+from Package.src.SmartCal.calibration_algorithms.mix_and_match import MixAndMatchCalibrator
+from Package.src.SmartCal.calibration_algorithms.temperature_scaling import TemperatureScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.isotonic import IsotonicCalibrator
+from Package.src.SmartCal.calibration_algorithms.beta import BetaCalibrator
+from Package.src.SmartCal.calibration_algorithms.dirichlet import DirichletCalibrator
+from Package.src.SmartCal.calibration_algorithms.empirical_binning import EmpiricalBinningCalibrator
+from Package.src.SmartCal.calibration_algorithms.matrix_scaling import MatrixScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.adaptive_temperature_scaling import AdaptiveTemperatureScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.platt.platt_scaling import PlattScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.vector_scaling import VectorScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.histogram.histogram import HistogramCalibrator
 from sklearn.metrics import log_loss
 
 
@@ -37,8 +36,7 @@ class TestMixAndMatchCalibrator(unittest.TestCase):
     NONPARAMETRIC_CALIBRATORS = {
         "IsotonicCalibrator": IsotonicCalibrator,
         "EmpiricalBinningCalibrator": EmpiricalBinningCalibrator,
-        "HistogramCalibrator": HistogramCalibrator,
-        "ImaxCalibrator": ImaxCalibrator
+        "HistogramCalibrator": HistogramCalibrator
     }
 
     def setUp(self):
@@ -230,7 +228,7 @@ class TestMixAndMatchCalibrator(unittest.TestCase):
         Test that the model is deterministic with the same random seed.
         """
         cal1 = MixAndMatchCalibrator(parametric_calibrator="TemperatureScalingCalibrator", nonparametric_calibrator="IsotonicCalibrator", seed=42)
-        cal2 = MixAndMatchCalibrator(parametric_calibrator="AdaptiveTemperatureScalingCalibrator", nonparametric_calibrator="ImaxCalibrator", seed=42)
+        cal2 = MixAndMatchCalibrator(parametric_calibrator="TemperatureScalingCalibrator", nonparametric_calibrator="IsotonicCalibrator", seed=42)
 
         cal1.fit(self.binary_probs, self.binary_y)
         cal2.fit(self.binary_probs, self.binary_y)

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 import logging
 import pandas as pd
-from utils.timer import time_operation
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.utils.timer import time_operation
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 
 config_manager = ConfigurationManager()
 

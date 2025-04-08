@@ -3,13 +3,13 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import accuracy_score, log_loss
 
-from config.enums.tabular_models_enum import TabularModelsEnum
-from config.enums.dataset_types_enum import DatasetTypesEnum
+from Package.src.SmartCal.config.enums.tabular_models_enum import TabularModelsEnum
+from Package.src.SmartCal.config.enums.dataset_types_enum import DatasetTypesEnum
 from classifiers.base_classifier import BaseClassifier
-from config.configuration_manager.configuration_manager import ConfigurationManager
-from utils.timer import time_operation
-from utils.cal_metrics import compute_calibration_metrics
-from utils.classification_metrics import compute_classification_metrics
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.utils.timer import time_operation
+from Package.src.SmartCal.utils.cal_metrics import compute_calibration_metrics
+from Package.src.SmartCal.utils.classification_metrics import compute_classification_metrics
 
 
 config_manager = ConfigurationManager()

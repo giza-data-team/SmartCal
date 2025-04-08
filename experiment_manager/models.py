@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, DateTime, JSON, Text, Integer, Float, ARRAY,UniqueConstraint
 from datetime import datetime
-from config.enums.experiment_status_enum import Experiment_Status_Enum
+from Package.src.SmartCal.config.enums.experiment_status_enum import Experiment_Status_Enum
 from experiment_manager.db_connection import Base
 
 

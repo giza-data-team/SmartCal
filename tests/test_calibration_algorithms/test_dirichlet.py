@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import torch
-from calibration_algorithms.dirichlet import DirichletCalibrator
+from Package.src.SmartCal.calibration_algorithms.dirichlet import DirichletCalibrator
 
 class TestDirichletCalibrator(unittest.TestCase):
 

@@ -4,7 +4,7 @@ import torch
 from torch.utils.data import Subset
 from sklearn.model_selection import StratifiedShuffleSplit
 import numpy as np
-from utils.timer import time_operation
+from Package.src.SmartCal.utils.timer import time_operation
 
 class ImagesSplitter(DatasetSplitter):
     def __init__(self, dataset_name, metadata_path, **kwargs):

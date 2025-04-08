@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import torch
-from calibration_algorithms.vector_scaling import VectorScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.vector_scaling import VectorScalingCalibrator
 
 
 class TestVectorScaling(unittest.TestCase):

@@ -5,14 +5,14 @@ import re
 import torch
 from data_preparation.splitters.language_splitter import LanguageSplitter
 from data_preparation.preprocessors.language_preprocessor import LanguagePreprocessor
-from config.enums.language_models_enum import ModelType
-from config.model_singleton import ModelCache
-from config.configuration_manager.configuration_manager import ConfigurationManager
-from config.enums.language_models_enum import LanguageModelsEnum
+from Package.src.SmartCal.config.enums.language_models_enum import ModelType
+from Package.src.SmartCal.config.model_singleton import ModelCache
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.enums.language_models_enum import LanguageModelsEnum
 from pipeline.pipeline import Pipeline
 from pipeline.cal_hyperparameter_tuning import tune_all_calibration
 from sklearn.metrics import accuracy_score, log_loss, precision_score, recall_score, f1_score
-from utils.cal_metrics import compute_calibration_metrics
+from Package.src.SmartCal.utils.cal_metrics import compute_calibration_metrics
 
 import os
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
@@ -41,11 +41,20 @@ class LanguagePipeline(Pipeline):
         
         # Dataset loading
         self.dataset = pd.read_csv(self.config["dataset_path"])
+
+        # Use provided split_seed in config or fall back to the random_seed from config
+        current_split_seed = self.config.get("split_seed")  # This returns None if key doesn't exist
+        if current_split_seed is None:
+            current_split_seed = self.random_seed
+            self.logger.info(f"No split_seed provided, using default random_seed: {current_split_seed}")
+        else:
+            self.logger.info(f"Using provided split_seed: {current_split_seed}")
         
         # Dataset splitting
         language_splitter = LanguageSplitter(dataset_name=self.config["dataset_name"],
                                             metadata_path=self.lang_metadata_path, 
-                                            logs=self.config["logs"])
+                                            logs=self.config["logs"],
+                                             random_seed=current_split_seed)
         train_lang, val_lang, test_lang = language_splitter.split_dataset(self.dataset)
         self.n_instances = val_lang.shape[0]
     
@@ -177,7 +186,12 @@ class LanguagePipeline(Pipeline):
         """Calibrate models and compute calibration metrics"""
         all_models_results = {}
         failed_models_dict = {}
-        
+
+        # Use kflods according to flag from config
+        use_kfold = self.config.get("use_kfold")  # This returns None if key doesn't exist
+        if use_kfold is not None:
+            self.logger.info(f"Evaluating using kfold")
+
         for model_name, classifier in self.classifiers.items():
             try:
                 self.logger.info(f"Calibrating model: {model_name}")
@@ -227,7 +241,8 @@ class LanguagePipeline(Pipeline):
                     self.true_labels_tst,
                     self,
                     model_name,
-                    self.config
+                    self.config,
+                    use_kfold
                 )
                 
                 # Store model results

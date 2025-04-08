@@ -5,13 +5,13 @@ import numpy as np
 from torch_lr_finder import LRFinder
 import logging
 
-from config.enums.image_models_enum import ImageModelsEnum
-from config.enums.dataset_types_enum import DatasetTypesEnum
+from Package.src.SmartCal.config.enums.image_models_enum import ImageModelsEnum
+from Package.src.SmartCal.config.enums.dataset_types_enum import DatasetTypesEnum
 from classifiers.base_classifier import BaseClassifier
-from utils.cal_metrics import compute_calibration_metrics
-from utils.classification_metrics import compute_classification_metrics
-from utils.timer import time_operation
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.utils.cal_metrics import compute_calibration_metrics
+from Package.src.SmartCal.utils.classification_metrics import compute_classification_metrics
+from Package.src.SmartCal.utils.timer import time_operation
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 
 
 config_manager = ConfigurationManager()

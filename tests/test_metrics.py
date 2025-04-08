@@ -1,10 +1,10 @@
 import unittest
 import numpy as np
-from metrics.conf_ece import ConfECE
-from metrics.ece import ECE
-from metrics.mce import MCE
-from metrics.brier_score import calculate_brier_score
-from metrics.calibration_curve import calculate_calibration_curve
+from Package.src.SmartCal.metrics.conf_ece import ConfECE
+from Package.src.SmartCal.metrics.ece import ECE
+from Package.src.SmartCal.metrics.mce import MCE
+from Package.src.SmartCal.metrics.brier_score import calculate_brier_score
+from Package.src.SmartCal.metrics.calibration_curve import calculate_calibration_curve
 
 class TestCalibrationMetrics(unittest.TestCase):
     def setUp(self):

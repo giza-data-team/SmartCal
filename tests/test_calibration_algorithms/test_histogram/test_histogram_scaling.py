@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from numpy.testing import assert_allclose
 
-from calibration_algorithms.histogram.histogram_scaling import HistogramScalingCalibrator  
+from Package.src.SmartCal.calibration_algorithms.histogram.histogram_scaling import HistogramScalingCalibrator  
 
 class TestHistogramScalingCalibrator(unittest.TestCase):
     def setUp(self):

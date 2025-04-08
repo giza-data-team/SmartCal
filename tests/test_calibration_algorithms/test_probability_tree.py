@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 import torch
 from scipy.special import softmax
-from calibration_algorithms.probability_tree import ProbabilityTreeCalibrator
+from Package.src.SmartCal.calibration_algorithms.probability_tree import ProbabilityTreeCalibrator
 
 # Function to generate synthetic features, logits, and labels
 def generate_synthetic_data(n_samples=1000, n_features=5, n_classes=3, seed=42):

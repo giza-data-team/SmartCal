@@ -5,8 +5,9 @@ from alembic import context
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from config.configuration_manager.configuration_manager import ConfigurationManager
-from db_connection import start_ssh_tunnel
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
+from experiment_manager.db_connection import start_ssh_tunnel
+from experiment_manager.models import Base
 
 config_manager = ConfigurationManager()
 
@@ -33,7 +34,6 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 
-from models import Base
 target_metadata = Base.metadata
 
 

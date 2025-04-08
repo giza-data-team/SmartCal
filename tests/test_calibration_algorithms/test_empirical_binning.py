@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from calibration_algorithms.empirical_binning import EmpiricalBinningCalibrator
+from Package.src.SmartCal.calibration_algorithms.empirical_binning import EmpiricalBinningCalibrator
 from unittest.mock import patch, MagicMock
 
 class TestEmpiricalBinningCalibrator(unittest.TestCase):

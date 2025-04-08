@@ -3,9 +3,9 @@ import pandas as pd
 from transformers import AutoTokenizer
 from sklearn.preprocessing import LabelEncoder
 import re
-from utils.timer import time_operation
-from config.configuration_manager.configuration_manager import ConfigurationManager
-from config.enums.language_models_enum import ModelType
+from Package.src.SmartCal.utils.timer import time_operation
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.enums.language_models_enum import ModelType
 
 config_manager = ConfigurationManager()
 

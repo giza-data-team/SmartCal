@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from sklearn.model_selection import train_test_split
 import logging
 import pandas as pd
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 
 config_manager = ConfigurationManager()
 

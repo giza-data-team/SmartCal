@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import torch
-from calibration_algorithms.matrix_scaling import MatrixScalingCalibrator
+from Package.src.SmartCal.calibration_algorithms.matrix_scaling import MatrixScalingCalibrator
 
 
 class TestMatrixScaling(unittest.TestCase):

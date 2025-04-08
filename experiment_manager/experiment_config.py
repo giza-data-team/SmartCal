@@ -1,11 +1,11 @@
-from config.enums.dataset_types_enum import DatasetTypesEnum
-from config.enums.image_models_enum import ImageModelsEnum
-from config.enums.language_models_enum import LanguageModelsEnum
-from config.enums.tabular_models_enum import TabularModelsEnum
-from config.enums.calibration_algorithms_enum import CalibrationAlgorithmTypesEnum
-from config.configuration_manager.configuration_manager import ConfigurationManager
-from config.enums.calibration_hyperparameters import CalibrationHyperparameters
-from config.enums.experiment_type_enum import ExperimentType
+from Package.src.SmartCal.config.enums.dataset_types_enum import DatasetTypesEnum
+from Package.src.SmartCal.config.enums.image_models_enum import ImageModelsEnum
+from Package.src.SmartCal.config.enums.language_models_enum import LanguageModelsEnum
+from Package.src.SmartCal.config.enums.tabular_models_enum import TabularModelsEnum
+from Package.src.SmartCal.config.enums.calibration_algorithms_enum import CalibrationAlgorithmTypesEnum
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.enums.calibration_hyperparameters import CalibrationHyperparameters
+from Package.src.SmartCal.config.enums.experiment_type_enum import ExperimentType
 from .models import BenchmarkingExperiment, KnowledgeBaseExperiment, BenchmarkingExperiment_V2, KnowledgeBaseExperiment_V2
 config_manager = ConfigurationManager()
 
@@ -63,20 +63,28 @@ class ExperimentConfig:
     
     
     @staticmethod
-    def get_calibration_hyperparameters(cal_algo: CalibrationAlgorithmTypesEnum):
+    def get_calibration_hyperparameters(cal_algo: CalibrationAlgorithmTypesEnum, use_defaults=False):
         """
         Retrieves the hyperparameters configuration for a given calibration algorithm.
-        
+
         Maps each calibration algorithm to its specific hyperparameters using the
         CalibrationHyperparameters enum values.
-        
+
         Args:
             cal_algo (CalibrationAlgorithmTypesEnum): The calibration algorithm
-            
+            use_defaults (bool): If True, use default values for Beta and Temperature scaling
+
+
         Returns:
             dict: Hyperparameters configuration for the algorithm
                   Empty dict if algorithm has no hyperparameters
         """
+
+        if use_defaults and cal_algo == CalibrationAlgorithmTypesEnum.BETA:
+            return {}
+
+        if use_defaults and cal_algo == CalibrationAlgorithmTypesEnum.TEMPERATURESCALING:
+            return {}
 
         hyperparameters = {
             CalibrationAlgorithmTypesEnum.BETA: {
@@ -88,11 +96,6 @@ class ExperimentConfig:
             CalibrationAlgorithmTypesEnum.DIRICHLET: {
                 'lr': CalibrationHyperparameters.lr.value,
                 'max_iter': CalibrationHyperparameters.max_itr.value
-            },
-            CalibrationAlgorithmTypesEnum.IMAX: {
-                'imax_cal_mode': CalibrationHyperparameters.imax_cal_mode.value,
-                'Q_binning_stage': CalibrationHyperparameters.Q_binning_stage.value,
-                'bin_init_mode': CalibrationHyperparameters.bin_init_mode.value
             },
             CalibrationAlgorithmTypesEnum.MATRIXSCALING: {
                 'lr': CalibrationHyperparameters.lr.value,

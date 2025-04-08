@@ -4,8 +4,8 @@ from torch.utils.data import DataLoader
 import torch
 import ast
 import numpy as np
-from config.configuration_manager.configuration_manager import ConfigurationManager
-from utils.timer import time_operation
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.utils.timer import time_operation
 config_manager = ConfigurationManager()
 
 class TransformedDataset(torch.utils.data.Dataset):

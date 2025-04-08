@@ -4,7 +4,7 @@ import torch
 from scipy.special import softmax
 from scipy.stats import entropy
 
-from calibration_algorithms.meta import MetaCalibrator
+from Package.src.SmartCal.calibration_algorithms.meta import MetaCalibrator
 
 
 # Function to generate synthetic logits and labels

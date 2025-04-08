@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from numpy.testing import assert_allclose
 
-from calibration_algorithms.platt.platt import PlattCalibrator
+from Package.src.SmartCal.calibration_algorithms.platt.platt import PlattCalibrator
 
 class TestPlattCalibrator(unittest.TestCase):
     def setUp(self):

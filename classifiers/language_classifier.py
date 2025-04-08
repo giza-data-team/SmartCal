@@ -13,12 +13,12 @@ from sklearn.preprocessing import LabelBinarizer
 from torch.utils.data import DataLoader
 
 from classifiers.base_classifier import BaseClassifier
-from config.enums.dataset_types_enum import DatasetTypesEnum
-from config.enums.language_models_enum import LanguageModelsEnum
-from utils.timer import time_operation
-from config.configuration_manager import ConfigurationManager
-from utils.cal_metrics import compute_calibration_metrics
-from utils.classification_metrics import compute_classification_metrics
+from Package.src.SmartCal.config.enums.dataset_types_enum import DatasetTypesEnum
+from Package.src.SmartCal.config.enums.language_models_enum import LanguageModelsEnum
+from Package.src.SmartCal.utils.timer import time_operation
+from Package.src.SmartCal.config.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.utils.cal_metrics import compute_calibration_metrics
+from Package.src.SmartCal.utils.classification_metrics import compute_classification_metrics
 
 
 config_manager = ConfigurationManager()

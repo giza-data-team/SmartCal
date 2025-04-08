@@ -3,8 +3,8 @@ import numpy as np
 import torch
 from abc import ABC, abstractmethod
 
-from config.enums.dataset_types_enum import DatasetTypesEnum
-from config.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.enums.dataset_types_enum import DatasetTypesEnum
+from Package.src.SmartCal.config.configuration_manager import ConfigurationManager
 
 
 class BaseClassifier(ABC):

@@ -3,12 +3,12 @@ import numpy as np
 import logging
 from data_preparation.splitters.tabular_splitter import TabularSplitter
 from data_preparation.preprocessors.tabular_preprocessor import TabularPreprocessor
-from config.model_singleton import ModelCache
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.model_singleton import ModelCache
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 from pipeline.cal_hyperparameter_tuning import tune_all_calibration
 from pipeline.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, log_loss, precision_score, recall_score, f1_score
-from utils.cal_metrics import compute_calibration_metrics
+from Package.src.SmartCal.utils.cal_metrics import compute_calibration_metrics
 
 # Initialize configuration manager
 config_manager = ConfigurationManager()
@@ -34,18 +34,28 @@ class TabularPipeline(Pipeline):
         self.failed_models = {}
         
     def load_preprocess_data(self):
-        """Load, split, and preprocess the tabular dataset"""
+        """ Load, split, and preprocess the tabular dataset """
+
         try:
             self.logger.info(f"Loading {self.config['task_type']} data...")
             self.tabular_metadata_path = config_manager.config_tabular
 
             # Load dataset from CSV
             self.dataset = pd.read_csv(self.config["dataset_path"])
-            
+
+            # Use provided split_seed in config or fall back to the random_seed from config
+            current_split_seed = self.config.get("split_seed")  # This returns None if key doesn't exist
+            if current_split_seed is None:
+                current_split_seed = self.random_seed
+                self.logger.info(f"No split_seed provided, using default random_seed: {current_split_seed}")
+            else:
+                self.logger.info(f"Using provided split_seed: {current_split_seed}")
+
             # Split dataset into train, validation, and test sets
             tabular_splitter = TabularSplitter(dataset_name=self.config["dataset_name"],
                                                metadata_path=self.tabular_metadata_path, 
-                                               logs=self.config["logs"])
+                                               logs=self.config["logs"],
+                                               random_seed=current_split_seed)
             train_tabular, valid_tabular, test_tabular = tabular_splitter.split_dataset(self.dataset)
             
             # Preprocess the data
@@ -58,7 +68,7 @@ class TabularPipeline(Pipeline):
             self.X_valid, self.y_valid = tabular_preprocessor.transform(valid_tabular)
             self.X_test, self.y_test = tabular_preprocessor.transform(test_tabular)
             # Store preprocessing timing information
-            self.preprocessing_timing_info = tabular_preprocessor.get_timing() 
+            self.preprocessing_timing_info = tabular_preprocessor.get_timing()
             
             # Ensure all labels are integers
             self.y_train = self.y_train.astype(int)
@@ -178,6 +188,11 @@ class TabularPipeline(Pipeline):
         """Calibrate all models and evaluate their calibration performance"""
         all_models_results = {}
         failed_models_dict = {}  # New dictionary for failed models
+
+        # Use kflods according to flag from config
+        use_kfold = self.config.get("use_kfold")  # This returns None if key doesn't exist
+        if use_kfold is not None:
+            self.logger.info(f"Evaluating using kfold")
         
         for model_name, classifier in self.classifiers.items():
             try:
@@ -219,7 +234,8 @@ class TabularPipeline(Pipeline):
                     self.y_test,
                     self,
                     model_name,
-                    self.config
+                    self.config,
+                    use_kfold
                 )
             
                 # Store comprehensive results for this model

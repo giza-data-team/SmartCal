@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 from numpy.testing import assert_allclose
-from calibration_algorithms.isotonic import IsotonicCalibrator
+from Package.src.SmartCal.calibration_algorithms.isotonic import IsotonicCalibrator
 
 class TestIsotonicCalibrator(unittest.TestCase):
     def setUp(self):

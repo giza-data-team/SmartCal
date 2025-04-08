@@ -1,0 +1,9 @@
+.idea
+versions/
+autocal/
+automl/
+__Pycache__
+venv__pycache__/
+venv/
+Auto-M-App2_key 2 (1).pem
+pipeline_results/

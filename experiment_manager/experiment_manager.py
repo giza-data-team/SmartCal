@@ -5,12 +5,12 @@ import pandas as pd
 from datetime import datetime
 from sqlalchemy import text 
 from experiment_manager.db_connection import SessionLocal
-from config.enums.experiment_type_enum import ExperimentType
-from config.enums.dataset_types_enum import DatasetTypesEnum
-from config.enums.experiment_status_enum import Experiment_Status_Enum
-from config.enums.language_models_enum import ModelType
-from config.enums.calibration_algorithms_enum import CalibrationAlgorithmTypesEnum
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.enums.experiment_type_enum import ExperimentType
+from Package.src.SmartCal.config.enums.dataset_types_enum import DatasetTypesEnum
+from Package.src.SmartCal.config.enums.experiment_status_enum import Experiment_Status_Enum
+from Package.src.SmartCal.config.enums.language_models_enum import ModelType
+from Package.src.SmartCal.config.enums.calibration_algorithms_enum import CalibrationAlgorithmTypesEnum
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 from pipeline.pipeline_factory import PipelineFactory 
 from experiment_manager.experiment_config import ExperimentConfig
 from datetime import datetime
@@ -93,7 +93,7 @@ class ExperimentManager:
                     "calibration_algorithms": calibration_algorithms
                 }
                 
-                base_config['dataset_path'] = f"Datasets/{self.dataset_type.name}/{dataset['Dataset']}.csv"
+                base_config['dataset_path'] = f"Datasets/Datasets/{self.dataset_type.name}/{dataset['Dataset']}.csv"
 
                 experiments_by_dataset[dataset['Dataset']] = base_config
                 

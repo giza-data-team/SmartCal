@@ -10,7 +10,7 @@ from data_preparation.splitters.images_splitter import ImagesSplitter
 from data_preparation.splitters.tabular_splitter import TabularSplitter
 from data_preparation.splitters.language_splitter import LanguageSplitter
 
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 
 class MockDataset(Dataset):
     def __init__(self, size=100):

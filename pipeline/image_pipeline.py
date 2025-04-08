@@ -2,12 +2,12 @@ import numpy as np
 import logging
 from data_preparation.splitters.images_splitter import ImagesSplitter 
 from data_preparation.preprocessors.images_preprocessor import ImagePreprocessor
-from config.model_singleton import ModelCache
-from config.configuration_manager.configuration_manager import ConfigurationManager
+from Package.src.SmartCal.config.model_singleton import ModelCache
+from Package.src.SmartCal.config.configuration_manager.configuration_manager import ConfigurationManager
 from pipeline.cal_hyperparameter_tuning import tune_all_calibration
 from sklearn.metrics import accuracy_score, log_loss, precision_score, recall_score, f1_score
 from pipeline.pipeline import Pipeline
-from utils.cal_metrics import compute_calibration_metrics
+from Package.src.SmartCal.utils.cal_metrics import compute_calibration_metrics
 
 config_manager = ConfigurationManager()
 
@@ -27,11 +27,20 @@ class ImagePipeline(Pipeline):
         """Load and preprocess image data"""
         self.logger.info(f"Loading {self.config['task_type']} data...")
         self.img_metadata_path = config_manager.config_img
+
+        # Use provided split_seed in config or fall back to the random_seed from config
+        current_split_seed = self.config.get("split_seed")  # This returns None if key doesn't exist
+        if current_split_seed is None:
+            current_split_seed = self.random_seed
+            self.logger.info(f"No split_seed provided, using default random_seed: {current_split_seed}")
+        else:
+            self.logger.info(f"Using provided split_seed: {current_split_seed}")
         
         # Dataset splitting
         image_splitter = ImagesSplitter(dataset_name=self.config["dataset_name"],
                                         metadata_path=self.img_metadata_path, 
-                                        logs=self.config["logs"])
+                                        logs=self.config["logs"],
+                                        random_seed=current_split_seed)
         train_img, val_img, test_img = image_splitter.split_dataset()
         self.n_instances = len(val_img) # Calculate the n_instances in the val set
         
@@ -158,7 +167,12 @@ class ImagePipeline(Pipeline):
         all_models_results = {}
         failed_models_dict = {}
         val_labels = self.get_labels_from_loader(self.val_loader)
-        
+
+        # Use kflods according to flag from config
+        use_kfold = self.config.get("use_kfold")  # This returns None if key doesn't exist
+        if use_kfold is not None:
+            self.logger.info(f"Evaluating using kfold")
+
         for model_name, classifier in self.classifiers.items():
             try:
                 self.logger.info(f"Calibrating model: {model_name}")
@@ -204,7 +218,8 @@ class ImagePipeline(Pipeline):
                     self.true_labels_test,
                     self,
                     model_name,
-                    self.config
+                    self.config,
+                    use_kfold
                 )
                 
                 # Store model results

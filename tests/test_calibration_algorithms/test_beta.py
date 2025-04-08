@@ -3,7 +3,7 @@
 import unittest
 import numpy as np
 from numpy.testing import assert_allclose
-from calibration_algorithms.beta import BetaCalibrator
+from Package.src.SmartCal.calibration_algorithms.beta import BetaCalibrator
 
 class TestBetaCalibrator(unittest.TestCase):
     def test_binary_calibration(self):
