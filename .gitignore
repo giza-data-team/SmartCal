@@ -1,8 +1,0 @@
-.idea
-versions/
-autocal/
-automl/
-__Pycache__
-venv__pycache__/
-venv/
-pipeline_results/
