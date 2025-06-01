@@ -24,36 +24,36 @@ The project follows a systematic approach to build and evaluate calibration algo
 ## Repository Structure: SmartCal
 ```python
 SmartCal/
-├── package/                   # Main package directory
-│   ├── src/smartcal/          # Core smartcal package source code
-│   │   ├── bayesian_optimization/ # Bayesian optimization implementation 
-│   │   ├── calibration_algorithms/ # Various calibration method implementations
-│   │   ├── config/            # Configuration files and settings
-│   │   ├── meta_features_extraction/ # Feature extraction utilities
-│   │   ├── meta_model/        # Meta-learning model implementation
-│   │   ├── metrics/           # Calibration evaluation metrics
-│   │   ├── smartcal/          # Core smartcal implementation
-│   │   ├── utils/             # Utility functions and helpers
-│   │   └── __init__.py        # Package initialization file
-│   ├── examples/              # Usage examples and demonstrations
-│   ├── dist/                  # Distribution files
-│   ├── pyproject.toml         # Package configuration and dependencies
-│   ├── LICENSE                # Package license
-│   └── README.md              # Package documentation
-├── classifiers/               # Model implementations for different data types
-├── data_preparation/          # Data preprocessing and preparation
-├── datasets/                  # Dataset storage and management
-├── experiment_manager/        # Experiment tracking and management on databases
-├── experiments/               # Experiment configurations and scripts
-├── meta_data_extraction/      # Script for data meta features extraction from knowledgebase
-├── meta_models_training/      # Training meta model (note: renamed from meta_model_training)
-├── pipeline/                  # Processing pipelines for different data types
-├── run_experiments/           # Scripts for running experiments
-├── tests/                     # Test suite
-├── docker-compose.yml         # Docker configuration for running PostgreSQL database and pgAdmin
-├── requirements.txt           # Python packages and dependencies required to run the project
-├── .gitignore                 # Git ignore file
-└── __init__.py                # Root package initialization
+├── package/                           # Main package directory
+│   ├── src/smartcal/                  # Core smartcal package source code
+│   │   ├── bayesian_optimization/     # Bayesian optimization implementation 
+│   │   ├── calibration_algorithms/    # Various calibration method implementations
+│   │   ├── config/                    # Configuration files and settings
+│   │   ├── meta_features_extraction/  # Feature extraction utilities
+│   │   ├── meta_model/                # Meta-learning model implementation
+│   │   ├── metrics/                   # Calibration evaluation metrics
+│   │   ├── smartcal/                  # Core smartcal implementation
+│   │   ├── utils/                     # Utility functions and helpers
+│   │   └── __init__.py                # Package initialization file
+│   ├── examples/                      # Usage examples and demonstrations
+│   ├── dist/                          # Distribution files
+│   ├── pyproject.toml                 # Package configuration and dependencies
+│   ├── LICENSE                        # Package license
+│   └── README.md                      # Package documentation
+├── classifiers/                       # Model implementations for different data types
+├── data_preparation/                  # Data preprocessing and preparation
+├── datasets/                          # Dataset storage and management
+├── experiment_manager/                # Experiment tracking and management on databases
+├── experiments/                       # Experiment configurations and scripts
+├── meta_data_extraction/              # Script for data meta features extraction from knowledgebase
+├── meta_models_training/              # Training meta model (note: renamed from meta_model_training)
+├── pipeline/                          # Processing pipelines for different data types
+├── run_experiments/                   # Scripts for running experiments
+├── tests/                             # Test suite
+├── docker-compose.yml                 # Docker configuration for running PostgreSQL database and pgAdmin
+├── requirements.txt                   # Python packages and dependencies required to run the project
+├── .gitignore                         # Git ignore file
+└── __init__.py                        # Root package initialization
 ```
 
 ### Key Components Description
@@ -308,14 +308,14 @@ This section provides comprehensive documentation for all SmartCal components. E
 
 ### Core Framework Components
 
-| Component | Description | Status | Documentation |
-|-----------|-------------|--------|---------------|
-| **SmartCal Engine** | Main calibration framework with automated method selection | Ready | [`package/src/smartcal/smartcal/`](package/src/smartcal/smartcal/README.md) |
-| **Calibration Algorithms** | Implementation of 12 post-hoc calibration methods | Ready | [`package/src/smartcal/calibration_algorithms/`](package/src/smartcal/calibration_algorithms/README.md) |
-| **Meta-Features Extraction** | Feature extraction for meta-learning | Ready | [`package/src/smartcal/meta_features_extraction/`](package/src/smartcal/meta_features_extraction/README.md) |
-| **Meta-Model** | Automated calibration method recommendation | Ready | [`package/src/smartcal/meta_model/`](package/src/smartcal/meta_model/README.md) |
-| **Bayesian Optimization** | Hyperparameter tuning for calibrators | Ready | [`package/src/smartcal/bayesian_optimization/`](package/src/smartcal/bayesian_optimization/README.md) |
-| **Evaluation Metrics** | Calibration performance metrics (ECE, MCE, Brier Score) | Ready | [`package/src/smartcal/metrics/`](package/src/smartcal/metrics/README.md) |
+| Component | Description | Documentation |
+|-----------|-------------|---------------|
+| **SmartCal Engine** | Main calibration framework with automated method selection | [`package/src/smartcal/smartcal/`](package/src/smartcal/smartcal/README.md) |
+| **Calibration Algorithms** | Implementation of 12 post-hoc calibration methods | [`package/src/smartcal/calibration_algorithms/`](package/src/smartcal/calibration_algorithms/README.md) |
+| **Meta-Features Extraction** | Feature extraction for meta-learning | [`package/src/smartcal/meta_features_extraction/`](package/src/smartcal/meta_features_extraction/README.md) |
+| **Meta-Model** | Automated calibration method recommendation | [`package/src/smartcal/meta_model/`](package/src/smartcal/meta_model/README.md) |
+| **Bayesian Optimization** | Hyperparameter tuning for calibrators | [`package/src/smartcal/bayesian_optimization/`](package/src/smartcal/bayesian_optimization/README.md) |
+| **Evaluation Metrics** | Calibration performance metrics (ECE, MCE, Brier Score) | [`package/src/smartcal/metrics/`](package/src/smartcal/metrics/README.md) |
 
 ### Package & Distribution
 
@@ -413,7 +413,7 @@ GitHub. https://github.com/giza-data-team/SmartCal
   publisher={GitHub},
   organization={Giza Systems},
   url={https://github.com/giza-data-team/SmartCal},
-  version={0.1.14}
+  version={0.1.15}
 }
 ```
 
@@ -421,7 +421,7 @@ GitHub. https://github.com/giza-data-team/SmartCal
 ```text
 Maher, M., Fayez, O., Medhat, Y., Elseedawy, M., Marei, Y., & Ibrahim, A. (2025). 
 smartcal: A meta-learning approach for automatic post-hoc calibration of machine learning models 
-(Version 0.1.14) [Computer software]. GitHub. https://github.com/giza-data-team/SmartCal
+(Version 0.1.15) [Computer software]. GitHub. https://github.com/giza-data-team/SmartCal
 ```
 
 ---

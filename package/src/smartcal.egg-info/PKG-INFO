@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: smartcal
-Version: 0.1.14
+Version: 0.1.15
 Summary: SmartCal is a modular Python package for auto calibrating machine learning models. It includes multiple calibration algorithms, meta-learning-based method selection, and evaluation metrics. Developed by a team from Giza Systems.
 Author-email: Mohamed Maher <m.maher525@gmail.com>, Osama Fayez <osamaoun997@gmail.com>, Youssef Medhat <yossfmedhat@gmail.com>, Mariam Elseedawy <mariam.elseedawy@gmail.com>, Yara Marei <yaramostafa500@gmail.com>, Abdullah Ibrahim <abdullahibrahim544@gmail.com>
 Maintainer-email: Mohamed Maher <m.maher525@gmail.com>, Osama Fayez <osamaoun997@gmail.com>, Youssef Medhat <yossfmedhat@gmail.com>, Mariam Elseedawy <mariam.elseedawy@gmail.com>, Yara Marei <yaramostafa500@gmail.com>, Abdullah Ibrahim <abdullahibrahim544@gmail.com>
@@ -119,8 +119,8 @@ Dynamic: license-file
 ├── metrics/                      # Calibration evaluation metrics
 ├── config/                       # Configuration enums and constants
 ├── meta_model/                   # Meta-learning recommendation engine
-├── meta_features_extraction/    # Meta-feature computation utilities
-├── bayesian_optimization/    # Bayesian optimization computation utilities
+├── meta_features_extraction/     # Meta-feature computation utilities
+├── bayesian_optimization/        # Bayesian optimization computation utilities
 ├── utils/                        # Helper functions and validation
 ├── smartcal/                     # Core SmartCal meta-calibration engine
 └── __init__.py
@@ -203,7 +203,7 @@ GitHub. https://github.com/giza-data-team/SmartCal
   publisher={GitHub},
   organization={Giza Systems},
   url={https://github.com/giza-data-team/SmartCal},
-  version={0.1.14}
+  version={0.1.15}
 }
 ```
 
@@ -211,7 +211,7 @@ GitHub. https://github.com/giza-data-team/SmartCal
 ```text
 Maher, M., Fayez, O., Medhat, Y., Elseedawy, M., Marei, Y., & Ibrahim, A. (2025). 
 smartcal: A meta-learning approach for automatic post-hoc calibration of machine learning models 
-(Version 0.1.14) [Computer software]. GitHub. https://github.com/giza-data-team/SmartCal
+(Version 0.1.15) [Computer software]. GitHub. https://github.com/giza-data-team/SmartCal
 ```
 
 ---

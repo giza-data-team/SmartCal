@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "smartcal"
-version = "0.1.14"
+version = "0.1.15"
 description = "SmartCal is a modular Python package for auto calibrating machine learning models. It includes multiple calibration algorithms, meta-learning-based method selection, and evaluation metrics. Developed by a team from Giza Systems."
 readme = "README.md"
 license = { file = "LICENSE" }

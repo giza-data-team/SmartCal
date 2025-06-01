@@ -51,8 +51,8 @@
 ├── metrics/                      # Calibration evaluation metrics
 ├── config/                       # Configuration enums and constants
 ├── meta_model/                   # Meta-learning recommendation engine
-├── meta_features_extraction/    # Meta-feature computation utilities
-├── bayesian_optimization/    # Bayesian optimization computation utilities
+├── meta_features_extraction/     # Meta-feature computation utilities
+├── bayesian_optimization/        # Bayesian optimization computation utilities
 ├── utils/                        # Helper functions and validation
 ├── smartcal/                     # Core SmartCal meta-calibration engine
 └── __init__.py
@@ -135,7 +135,7 @@ GitHub. https://github.com/giza-data-team/SmartCal
   publisher={GitHub},
   organization={Giza Systems},
   url={https://github.com/giza-data-team/SmartCal},
-  version={0.1.14}
+  version={0.1.15}
 }
 ```
 
@@ -143,7 +143,7 @@ GitHub. https://github.com/giza-data-team/SmartCal
 ```text
 Maher, M., Fayez, O., Medhat, Y., Elseedawy, M., Marei, Y., & Ibrahim, A. (2025). 
 smartcal: A meta-learning approach for automatic post-hoc calibration of machine learning models 
-(Version 0.1.14) [Computer software]. GitHub. https://github.com/giza-data-team/SmartCal
+(Version 0.1.15) [Computer software]. GitHub. https://github.com/giza-data-team/SmartCal
 ```
 
 ---
