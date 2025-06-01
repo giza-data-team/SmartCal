@@ -114,21 +114,27 @@ class TestMetaModel(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.factory.create_model(top_n=13)
 
+    @patch('smartcal.meta_model.meta_model.MetaModel._validate_components')
     @patch('smartcal.meta_model.meta_model.MetaModel._load_component')
-    def test_model_loading(self, mock_load):
+    def test_model_loading(self, mock_load, mock_validate):
         """Test model and label encoder loading behavior"""
-        # Mock successful loading
+        # Test successful loading case
         mock_model = MagicMock()
         mock_encoder = MagicMock()
         mock_encoder.classes_ = np.array(['model1', 'model2', 'model3'])
         mock_load.side_effect = [mock_model, mock_encoder]
+        mock_validate.return_value = None  # Skip validation
         
         model = self.factory.create_model()
         self.assertIsNotNone(model.model)
         self.assertIsNotNone(model.label_encoder)
 
-        # Mock failed loading
+        # Test failed loading case - reset mocks
+        mock_load.reset_mock()
+        mock_validate.reset_mock()
         mock_load.side_effect = [None, None]
+        mock_validate.return_value = None  # Skip validation
+        
         model = self.factory.create_model()
         self.assertIsNone(model.model)
         self.assertIsNone(model.label_encoder)
@@ -160,10 +166,13 @@ class TestMetaModel(unittest.TestCase):
         with self.assertRaises(Exception):
             model.predict_best_model(invalid_input)
 
+    @patch('smartcal.meta_model.meta_model.MetaModel._validate_components')
     @patch('smartcal.meta_model.meta_model.MetaModel._load_component')
-    def test_label_encoder_handling(self, mock_load):
+    def test_label_encoder_handling(self, mock_load, mock_validate):
         """Test prediction behavior with and without label encoder"""
-        # Mock model and encoder
+        mock_validate.return_value = None  # Skip validation for all tests
+        
+        # Mock model 
         mock_model = MagicMock()
         mock_model.predict_proba.return_value = np.array([[0.3, 0.4, 0.3]])
         mock_model.classes_ = np.array(['model1', 'model2', 'model3'])
@@ -177,8 +186,12 @@ class TestMetaModel(unittest.TestCase):
         predictions = model.predict_best_model(self.test_input)
         self.assertEqual(len(predictions), 3)
         
-        # Test without label encoder (using model's classes_)
+        # Test without label encoder (using model's classes_) - reset mocks
+        mock_load.reset_mock()
+        mock_validate.reset_mock()
+        mock_validate.return_value = None  # Skip validation
         mock_load.side_effect = [mock_model, None]
+        
         model = self.factory.create_model()
         predictions = model.predict_best_model(self.test_input)
         self.assertEqual(len(predictions), 3)
