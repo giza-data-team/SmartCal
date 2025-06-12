@@ -1,4 +1,8 @@
 # SmartCal
+[![PyPI version](https://img.shields.io/pypi/v/smartcal.svg)](https://pypi.org/project/smartcal/)
+![Made with Python](https://img.shields.io/badge/Made%20with-Python-blue.svg)
+
+
 
 ## Project Overview
 
