@@ -111,40 +111,25 @@ This project is a collaborative effort developed with support from **Giza System
 - **Youssef Medhat** - [GitHub](https://github.com/yossfmedhat) | [PyPI](https://pypi.org/user/yossfmedhat/) | [Email](mailto:yossfmedhat@gmail.com)
 - **Yara Marei** - [GitHub](https://github.com/yaramostafa) | [PyPI](https://pypi.org/user/yaramostafa/) | [Email](mailto:yaramostaffa500@gmail.com)
 - **Abdullah Ibrahim** - [GitHub](https://github.com/BidoS) | [PyPI](https://pypi.org/user/abdullah.ibrahim/) | [Email](mailto:abdullahibrahim544@gmail.com)
-
-### Company Support
-- **Giza Systems** - Research support for the development of smartcal
+- **Radwa ElShawi** - [Email](mailto:radwa.elshawi@ut.ee)
 
 ---
 
 ## Citation
 
-If you use smartcal in your research or publication, please cite it as:
+If you use `SmartCal` in your research or publication, please cite it as:
 
-**Text Citation:**
-```text
-Maher, M., Elseedawy, M., Fayez, O., Medhat, Y., Marei, Y., & Ibrahim, A. (2025). 
-smartcal: A Meta-Learning Approach for Automatic Post-Hoc Calibration of Machine Learning Models. 
-GitHub. https://github.com/giza-data-team/SmartCal
-```
 
 **BibTeX:**
 ```bibtex
-@software{smartcal2025,
-  title={smartcal: A Meta-Learning Approach for Automatic Post-Hoc Calibration of Machine Learning Models},
-  author={Maher, Mohamed and Elseedawy, Mariam and Fayez, Osama and Medhat, Youssef and Marei, Yara and Ibrahim, Abdullah},
-  year={2025},
-  publisher={GitHub},
-  url={https://github.com/giza-data-team/SmartCal},
-  version={0.1.15}
+@inproceedings{
+abdelrahman2025smartcal,
+title={SmartCal: A Novel Automated Approach to Classifier Probability Calibration},
+author={Mohamed Maher Abdelrahman and Mariam Magdy Elseedawy and Osama Fayez Oun and Youssef Medhat and Yara Mostafa Marei and Abdullah Ibrahim and Radwa Mohamed El Shawi},
+booktitle={AutoML 2025 Methods Track},
+year={2025},
+url={https://openreview.net/forum?id=XPtubBurd2}
 }
-```
-
-**APA Style:**
-```text
-Maher, M., Elseedawy, M., Fayez, O., Medhat, Y., Marei, Y., & Ibrahim, A. (2025). 
-smartcal: A meta-learning approach for automatic post-hoc calibration of machine learning models 
-(Version 0.1.15) [Computer software]. GitHub. https://github.com/giza-data-team/SmartCal
 ```
 
 ---
