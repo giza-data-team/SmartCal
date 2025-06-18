@@ -389,7 +389,7 @@ This project is a collaborative effort developed with support from **Giza System
 - **Mariam Elseedawy** - [GitHub](https://github.com/Seedawy200) | [PyPI](https://pypi.org/user/Seedawy200/) | [Email](mailto:mariam.elseedawy@gmail.com)
 - **Osama Fayez** - [GitHub](https://github.com/osamaoun97) | [PyPI](https://pypi.org/user/osamaoun97/) | [Email](mailto:osamaoun997@gmail.com)
 - **Youssef Medhat** - [GitHub](https://github.com/yossfmedhat) | [PyPI](https://pypi.org/user/yossfmedhat/) | [Email](mailto:yossfmedhat@gmail.com)
-- **Yara Marei** - [GitHub](https://github.com/yaramostafa) | [PyPI](https://pypi.org/user/yaramostafa/) | [Email](mailto:yaramostafa500@gmail.com)
+- **Yara Marei** - [GitHub](https://github.com/yaramostafa) | [PyPI](https://pypi.org/user/yaramostafa/) | [Email](mailto:yaramostaffa500@gmail.com)
 - **Abdullah Ibrahim** - [GitHub](https://github.com/BidoS) | [PyPI](https://pypi.org/user/abdullah.ibrahim/) | [Email](mailto:abdullahibrahim544@gmail.com)
 - **Radwa ElShawi** - [Email](mailto:radwa.elshawi@ut.ee)
 
@@ -405,10 +405,8 @@ If you use `SmartCal` in your research or publication, please cite it as:
 @inproceedings{
 abdelrahman2025smartcal,
 title={SmartCal: A Novel Automated Approach to Classifier Probability Calibration},
-author={Mohamed Maher Abdelrahman and Osama Fayez Oun and Youssef Medhat and Mariam Magdy Elseedawy and Yara Mostafa Marei and Abdullah Ibrahim and Radwa Mohamed El Shawi},
-booktitle={AutoML 2025 Methods Track},
-year={2025},
-url={https://openreview.net/forum?id=XPtubBurd2}
+author={Mohamed Maher Abdelrahman and Mariam Magdy Elseedawy and Osama Fayez Oun and Youssef Medhat and Yara Mostafa Marei and Abdullah Ibrahim and Radwa Mohamed El Shawi},
+year={2025}
 }
 ```
 
