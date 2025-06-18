@@ -406,7 +406,9 @@ If you use `SmartCal` in your research or publication, please cite it as:
 abdelrahman2025smartcal,
 title={SmartCal: A Novel Automated Approach to Classifier Probability Calibration},
 author={Mohamed Maher Abdelrahman and Mariam Magdy Elseedawy and Osama Fayez Oun and Youssef Medhat and Yara Mostafa Marei and Abdullah Ibrahim and Radwa Mohamed El Shawi},
-year={2025}
+booktitle={AutoML 2025 Methods Track},
+year={2025},
+url={https://openreview.net/forum?id=XPtubBurd2}
 }
 ```
 
