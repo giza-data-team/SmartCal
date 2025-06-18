@@ -104,10 +104,10 @@ This project is a collaborative effort developed with support from **Giza System
 
 ### Core Team
 - **Mohamed Maher** - [GitHub](https://github.com/mmaher22) | [PyPI](https://pypi.org/user/mmaher22/) | [Email](mailto:m.maher525@gmail.com)
+- **Mariam Elseedawy** - [GitHub](https://github.com/Seedawy200) | [PyPI](https://pypi.org/user/Seedawy200/) | [Email](mailto:mariam.elseedawy@gmail.com)
 - **Osama Fayez** - [GitHub](https://github.com/osamaoun97) | [PyPI](https://pypi.org/user/osamaoun97/) | [Email](mailto:osamaoun997@gmail.com)
 - **Youssef Medhat** - [GitHub](https://github.com/yossfmedhat) | [PyPI](https://pypi.org/user/yossfmedhat/) | [Email](mailto:yossfmedhat@gmail.com)
-- **Mariam Elseedawy** - [GitHub](https://github.com/Seedawy200) | [PyPI](https://pypi.org/user/Seedawy200/) | [Email](mailto:mariam.elseedawy@gmail.com)
-- **Yara Marei** - [GitHub](https://github.com/yaramostafa) | [PyPI](https://pypi.org/user/yaramostafa/) | [Email](mailto:yaramostafa500@gmail.com)
+- **Yara Marei** - [GitHub](https://github.com/yaramostafa) | [PyPI](https://pypi.org/user/yaramostafa/) | [Email](mailto:yaramostaffa500@gmail.com)
 - **Abdullah Ibrahim** - [GitHub](https://github.com/BidoS) | [PyPI](https://pypi.org/user/abdullah.ibrahim/) | [Email](mailto:abdullahibrahim544@gmail.com)
 
 ### Company Support
@@ -121,7 +121,7 @@ If you use smartcal in your research or publication, please cite it as:
 
 **Text Citation:**
 ```text
-Maher, M., Fayez, O., Medhat, Y., Elseedawy, M., Marei, Y., & Ibrahim, A. (2025). 
+Maher, M., Elseedawy, M., Fayez, O., Medhat, Y., Marei, Y., & Ibrahim, A. (2025). 
 smartcal: A Meta-Learning Approach for Automatic Post-Hoc Calibration of Machine Learning Models. 
 GitHub. https://github.com/giza-data-team/SmartCal
 ```
@@ -130,10 +130,9 @@ GitHub. https://github.com/giza-data-team/SmartCal
 ```bibtex
 @software{smartcal2025,
   title={smartcal: A Meta-Learning Approach for Automatic Post-Hoc Calibration of Machine Learning Models},
-  author={Maher, Mohamed and Fayez, Osama and Medhat, Youssef and Elseedawy, Mariam and Marei, Yara and Ibrahim, Abdullah},
+  author={Maher, Mohamed and Elseedawy, Mariam and Fayez, Osama and Medhat, Youssef and Marei, Yara and Ibrahim, Abdullah},
   year={2025},
   publisher={GitHub},
-  organization={Giza Systems},
   url={https://github.com/giza-data-team/SmartCal},
   version={0.1.15}
 }
@@ -141,7 +140,7 @@ GitHub. https://github.com/giza-data-team/SmartCal
 
 **APA Style:**
 ```text
-Maher, M., Fayez, O., Medhat, Y., Elseedawy, M., Marei, Y., & Ibrahim, A. (2025). 
+Maher, M., Elseedawy, M., Fayez, O., Medhat, Y., Marei, Y., & Ibrahim, A. (2025). 
 smartcal: A meta-learning approach for automatic post-hoc calibration of machine learning models 
 (Version 0.1.15) [Computer software]. GitHub. https://github.com/giza-data-team/SmartCal
 ```
