@@ -1,4 +1,6 @@
 # smartcal – Auto-Calibration for Machine Learning
+[![PyPI version](https://img.shields.io/pypi/v/smartcal.svg)](https://pypi.org/project/smartcal/)
+![Made with Python](https://img.shields.io/badge/Made%20with-Python-blue.svg)
 
 **smartcal** is a modular and extensible Python package that provides automated, metric-driven calibration of classification models. It leverages meta-learning to recommend and tune the best calibrator from a rich suite of calibration algorithms. smartcal supports evaluation with popular calibration metrics.
 
